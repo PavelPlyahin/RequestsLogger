@@ -30,13 +30,13 @@ for site in sites:
         response = rq.get(site, timeout=3)
 
         if response.status_code == 200:
-            logging.info(f'{response.status_code}')
-            write_to_file(success_log, site)
+            logging.info(f'{response.status_code} {site}')
+            write_to_file(success_log, message=f'{response.status_code} {site}')
 
         elif response.status_code != 200:
-            logging.warning(f'{response.status_code}')
-            write_to_file(bad_log, site)
+            logging.warning(f'{response.status_code} {site}')
+            write_to_file(bad_log, message=f'{response.status_code} {site}')
 
     except requests.exceptions.RequestException as e:
-        logging.error(f'No Connection')
+        logging.error(f'No Connection {site}')
         write_to_file(blocked_log, str(site) + ':' + str(e))
