@@ -3,8 +3,8 @@ import logging
 import requests.exceptions
 
 # объект логирования и форматирование записей для вывода в консоль
-formatting = '[%(asctime)s] [%(levelname)s]: %(message)s'
-logging.basicConfig(format=formatting,level=logging.INFO)
+formatting = '[%(levelname)s]: %(message)s:'
+logging.basicConfig(format=formatting,level=logging.INFO, filename='requests_response.log')
 logger = logging.getLogger('RequestsLogger')
 GetParams = {'param1': 'value1', 'param2': 'value2'}
 response = rq.get('https://google.com', GetParams)
